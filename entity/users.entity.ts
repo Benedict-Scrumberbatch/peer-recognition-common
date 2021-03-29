@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, JoinColumn, OneToMany, ManyToOne, OneToO
 import { Company } from "./company.entity";
 import { Login } from './login.entity';
 import { Recognition } from "./recognition.entity";
-import { Role } from "../../roles/role.enum";
+import { Role } from "../enum/role.enum";
 import { TagStats} from './tagstats.entity';
 
 @Entity({name: "users"})
