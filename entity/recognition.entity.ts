@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, JoinTable, ManyToOne, Index, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, JoinTable, ManyToOne, Index, ManyToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { Company } from "./company.entity";
 import { Users } from "./users.entity";
 import { Tag } from "./tag.entity";
@@ -29,4 +29,17 @@ export class Recognition {
 
     @Column()
     msg: string;
+
+    @CreateDateColumn({ type: 'timestamp' })
+    createdAt?: Date;
+
+    @UpdateDateColumn({ type: 'timestamp' })
+    updatedAt?: Date;
+
+    @DeleteDateColumn({ type: 'timestamp' })
+    deletedAt?: Date;
+
+    @ManyToOne(()=>Users, users=>users.recsDeleted)
+    @JoinColumn()
+    deletedBy?: Users;
 }
