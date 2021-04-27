@@ -62,7 +62,7 @@ export class Users {
     numRecsSent: number;
 
     // This relation was making it impossible to create rows in the table.
-    @OneToOne(() => Login)
+    @OneToOne(() => Login, login => login.employee)
     login: Login;
 
     @OneToMany(() => TagStats, tagstats => tagstats.employee)
