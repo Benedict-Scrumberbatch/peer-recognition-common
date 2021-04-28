@@ -1,7 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, JoinTable, ManyToOne, Index, ManyToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, JoinTable, ManyToOne, Index, ManyToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
 import { Company } from "./company.entity";
 import { Users } from "./users.entity";
 import { Tag } from "./tag.entity";
+import { Report } from './report.entity';
+import { Rockstar } from './rockstar.entity';
+import { Comment } from './comment.entity';
+import { Reaction } from './reaction.entity';
 
 @Entity({name: "recognition"})
 @Index(["company", "postDate"])
@@ -29,6 +33,16 @@ export class Recognition {
 
     @Column()
     msg: string;
+
+
+    @OneToMany(() => Report, Report => Report.recognition)
+    reports: Report[];
+
+    @OneToMany(() => Comment, Comment => Comment.recognition)
+    comments: Comment[];
+
+    @OneToMany(() => Reaction, Reaction => Reaction.recognition)
+    reactions: Reaction[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;

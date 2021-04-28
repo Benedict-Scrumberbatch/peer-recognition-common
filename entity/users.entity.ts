@@ -4,6 +4,8 @@ import { Login } from './login.entity';
 import { Recognition } from "./recognition.entity";
 import { Role } from "../enum/role.enum";
 import { TagStats} from './tagstats.entity';
+import { Report } from './report.entity';
+import { Rockstar} from './rockstar.entity';
 
 @Entity({name: "users"})
 @Index(['companyId', 'employeeId'], {unique: true})
@@ -70,6 +72,12 @@ export class Users {
 
     @OneToMany(()=>Recognition, rec=>rec.deletedBy)
     recsDeleted?: Recognition[];
+
+    @OneToMany(() => Report, report=>report.employeeFrom)
+    report: Report[];
+
+    @OneToMany(() => Rockstar, rockstar=>rockstar.rockstar)
+    rockstar: Rockstar[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;
