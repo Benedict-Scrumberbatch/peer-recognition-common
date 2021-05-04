@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, Index, PrimaryColumn, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, Index, PrimaryColumn, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinTable } from 'typeorm';
 import { Company } from './company.entity';
 import { Recognition } from './recognition.entity';
 import { TagStats } from './tagstats.entity';
@@ -15,7 +15,9 @@ export class Tag {
     @ManyToOne(()=> Company, company=>company.tags)
     company: Company;
 
+    
     @ManyToMany(()=> Recognition, rec=> rec.tags)
+    @JoinTable()
     rec: Recognition;
 
     @OneToMany(() => TagStats, stats => stats.tag)
