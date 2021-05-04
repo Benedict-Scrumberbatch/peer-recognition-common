@@ -9,7 +9,7 @@ export class Login {
     @Column()
     password: string;
 
-    @OneToOne(() => Users)
+    @OneToOne(() => Users, users => users.login)
     @JoinColumn()
     employee: Users;
 
