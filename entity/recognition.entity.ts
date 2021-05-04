@@ -6,18 +6,16 @@ import { Report } from './report.entity';
 import { Rockstar } from './rockstar.entity';
 import { Comment } from './comment.entity';
 import { Reaction } from './reaction.entity';
+import { UserNotification } from './notification.entity'
 
 @Entity({name: "recognition"})
-@Index(["company", "postDate"])
+@Index(["empFrom", "empTo", "createdAt"])
 export class Recognition {
     @PrimaryGeneratedColumn()
     recId: number;
 
     @ManyToOne(()=> Company, company=>company.recognitions)
     company: Company;
-
-    @Column("timestamp")
-    postDate: Date;
 
     @ManyToOne(()=> Users, users=>users.recsSent)
     @JoinColumn()
@@ -40,6 +38,9 @@ export class Recognition {
 
     @OneToMany(() => Comment, Comment => Comment.recognition)
     comments: Comment[];
+
+    @OneToMany(() => UserNotification, UserNotification => UserNotification.recognition)
+    notifications: UserNotification[];
 
     @OneToMany(() => Reaction, Reaction => Reaction.recognition)
     reactions: Reaction[];

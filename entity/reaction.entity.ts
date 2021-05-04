@@ -1,7 +1,8 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany} from 'typeorm';
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { ReactType} from '../enum/reacttype.enum';
+import { UserNotification } from './notification.entity';
 
 @Entity({name: "reaction"})
 @Index(["employeeFrom","recognition","reactType"], {unique: true})
@@ -16,8 +17,17 @@ export class Reaction {
     @ManyToOne(() => Recognition, Recognition => Recognition.reactions)
     recognition: Recognition ;
 
-    @Column("timestamp")
-    reactDate: Date;
+    @CreateDateColumn({ type: 'timestamp' })
+    createdAt?: Date;
+
+    @UpdateDateColumn({ type: 'timestamp' })
+    updatedAt?: Date;
+
+    @DeleteDateColumn({ type: 'timestamp' })
+    deletedAt?: Date;
+
+    @OneToMany(() => UserNotification, UserNotification => UserNotification.reaction)
+    notifications: UserNotification[];
 
     @Column({ 
         type: "enum", 
