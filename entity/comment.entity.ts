@@ -2,6 +2,8 @@ import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Index, C
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { UserNotification } from './notification.entity';
+import { Report } from './report.entity';
+
 
 @Entity({name: "comment"})
 @Index(["employeeFrom","recognition", "createdAt"], {unique: true})
@@ -14,6 +16,9 @@ export class Comment {
 
     @OneToMany(() => UserNotification, UserNotification => UserNotification.comment)
     notifications: UserNotification[];
+
+    @OneToMany(() => Report, Report => Report.comment)
+    reports: Report[];
     
     @ManyToOne(() => Users)
     @JoinColumn()
@@ -31,4 +36,7 @@ export class Comment {
     @DeleteDateColumn({ type: 'timestamp' })
     deletedAt?: Date;
 
+    @ManyToOne(()=>Users, users=>users.commentsDeleted)
+    @JoinColumn()
+    deletedBy?: Users;
 }

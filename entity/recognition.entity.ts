@@ -32,7 +32,6 @@ export class Recognition {
     @Column()
     msg: string;
 
-
     @OneToMany(() => Report, Report => Report.recognition)
     reports: Report[];
 
