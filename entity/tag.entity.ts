@@ -13,15 +13,14 @@ export class Tag {
 
     @Index()
     @ManyToOne(()=> Company, company=>company.tags)
-    company: Company;
+    company?: Company;
 
     
     @ManyToMany(()=> Recognition, rec=> rec.tags)
-    @JoinTable()
-    rec: Recognition;
+    rec?: Recognition;
 
     @OneToMany(() => TagStats, stats => stats.tag)
-    tagstats: TagStats[];
+    tagstats?: TagStats[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;

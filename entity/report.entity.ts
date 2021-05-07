@@ -1,9 +1,11 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn,  Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn,  Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
+import { UserNotification } from './notification.entity';
+import { Comment } from './comment.entity';
 
 @Entity({name: "report"})
-@Index(["employeeFrom","recognition","ReportDate"], {unique: true})
+@Index(["employeeFrom","recognition","createdAt"], {unique: true})
 export class Report {
     @PrimaryGeneratedColumn('increment')
     reportID: number;
@@ -15,8 +17,14 @@ export class Report {
     @ManyToOne(() => Recognition, Recognition => Recognition.reports)
     recognition: Recognition ;
 
-    @Column("timestamp")
-    ReportDate: Date
+    @ManyToOne(() => Comment, Comment => Comment.reports)
+    comment: Comment ;
+
+    @Column()
+    msg: string;
+
+    @OneToMany(() => UserNotification, UserNotification => UserNotification.report)
+    notifications: UserNotification[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;

@@ -6,6 +6,7 @@ import { Role } from "../enum/role.enum";
 import { TagStats} from './tagstats.entity';
 import { Report } from './report.entity';
 import { Rockstar} from './rockstar.entity';
+import { Comment } from './comment.entity';
 
 @Entity({name: "users"})
 @Index(['companyId', 'employeeId'], {unique: true})
@@ -49,7 +50,7 @@ export class Users {
     manager: Users;
 
     @OneToMany(()=>Users, emp=>emp.manager)
-    managed: Users[];
+    manages: Users[];
 
     @OneToMany(()=>Recognition, rec=>rec.empFrom)
     recsSent: Recognition[];
@@ -72,6 +73,9 @@ export class Users {
 
     @OneToMany(()=>Recognition, rec=>rec.deletedBy)
     recsDeleted?: Recognition[];
+
+    @OneToMany(()=>Comment, comment=>comment.deletedBy)
+    commentsDeleted?: Comment[];
 
     @OneToMany(() => Report, report=>report.employeeFrom)
     report: Report[];

@@ -2,6 +2,7 @@ import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, Index, ManyToMany, J
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { RockstarStats } from './rockstarstats.entity';
+import { UserNotification } from './notification.entity';
 
 @Entity({name: "rockstar"})
 @Index(["compID", "month", "year"], {unique: true})
@@ -14,6 +15,9 @@ export class Rockstar {
 
     @Column()
     year: number; 
+
+    @OneToMany(() => UserNotification, UserNotification => UserNotification.rockstar)
+    notifications: UserNotification[];
 
     @Column()
     compID: number
