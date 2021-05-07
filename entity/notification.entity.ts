@@ -39,6 +39,9 @@ export class UserNotification {
     reaction: Reaction ;
 
     @Column()
+    title: string;
+    
+    @Column()
     msg: string;
 
     @CreateDateColumn({ type: 'timestamp' })
