@@ -1,4 +1,4 @@
-export class athDtoFull {
+export class authDtoFull {
     access_token: string;
     refresh_token: string;
     accessTokenExpire: string;
