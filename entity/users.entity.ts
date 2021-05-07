@@ -50,7 +50,7 @@ export class Users {
     manager: Users;
 
     @OneToMany(()=>Users, emp=>emp.manager)
-    managed: Users[];
+    manages: Users[];
 
     @OneToMany(()=>Recognition, rec=>rec.empFrom)
     recsSent: Recognition[];

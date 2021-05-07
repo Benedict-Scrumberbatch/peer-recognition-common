@@ -11,7 +11,7 @@ export class Company {
     @Column()
     name: string;
 
-    @OneToMany(()=>Tag, tag=>tag.company)
+    @OneToMany(()=>Tag, tag=>tag.company, {cascade: true})
     @JoinColumn()
     tags: Tag[];
 

@@ -17,7 +17,6 @@ export class Tag {
 
     
     @ManyToMany(()=> Recognition, rec=> rec.tags)
-    @JoinTable()
     rec: Recognition;
 
     @OneToMany(() => TagStats, stats => stats.tag)
