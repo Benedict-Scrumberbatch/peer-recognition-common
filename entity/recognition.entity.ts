@@ -12,10 +12,10 @@ import { UserNotification } from './notification.entity'
 @Index(["empFrom", "empTo", "createdAt"])
 export class Recognition {
     @PrimaryGeneratedColumn()
-    recId: number;
+    recId?: number;
 
     @ManyToOne(()=> Company, company=>company.recognitions)
-    company: Company;
+    company?: Company;
 
     @ManyToOne(()=> Users, users=>users.recsSent)
     @JoinColumn()
@@ -30,19 +30,19 @@ export class Recognition {
     tags: Tag[];
 
     @Column()
-    msg: string;
+    msg?: string;
 
     @OneToMany(() => Report, Report => Report.recognition)
-    reports: Report[];
+    reports?: Report[];
 
     @OneToMany(() => Comment, Comment => Comment.recognition)
-    comments: Comment[];
+    comments?: Comment[];
 
     @OneToMany(() => UserNotification, UserNotification => UserNotification.recognition)
-    notifications: UserNotification[];
+    notifications?: UserNotification[];
 
     @OneToMany(() => Reaction, Reaction => Reaction.recognition)
-    reactions: Reaction[];
+    reactions?: Reaction[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;

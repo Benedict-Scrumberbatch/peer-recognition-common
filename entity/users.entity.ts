@@ -14,15 +14,15 @@ export class Users {
     
     @ManyToOne(()=>Company, {primary: true} )
     @JoinColumn({name: "companyId", referencedColumnName: "companyId"})
-    company: Company;
+    company?: Company;
     
     // This looks duplicated, but don't delete it. It is just the same as the JoinColumn. 
     // This is necessary to make the foreign key also act as a primary key for Users.
     @PrimaryColumn()
-    companyId: number;
+    companyId?: number;
 
     @PrimaryColumn()
-    employeeId: number;
+    employeeId?: number;
 
     @Column()
     firstName: string;
@@ -31,45 +31,45 @@ export class Users {
     lastName: string;
 
     @Column()
-    positionTitle: string;
+    positionTitle?: string;
 
     @Column()
-    isManager: boolean;
+    isManager?: boolean;
 
     @Column({ 
         type: "enum", 
         enum: Role, 
         default: Role.Employee})
-    role: Role;
+    role?: Role;
 
     @Column("timestamp")
-    startDate: Date;
+    startDate?: Date;
 
     @ManyToOne(()=> Users)
     @JoinColumn()
-    manager: Users;
+    manager?: Users;
 
     @OneToMany(()=>Users, emp=>emp.manager)
-    manages: Users[];
+    manages?: Users[];
 
     @OneToMany(()=>Recognition, rec=>rec.empFrom)
-    recsSent: Recognition[];
+    recsSent?: Recognition[];
 
     @OneToMany(()=>Recognition, rec=>rec.empTo)
-    recsReceived: Recognition[];
+    recsReceived?: Recognition[];
 
     @Column({default: 0})
-    numRecsReceived: number;
+    numRecsReceived?: number;
 
     @Column({default: 0})
-    numRecsSent: number;
+    numRecsSent?: number;
 
     // This relation was making it impossible to create rows in the table.
     @OneToOne(() => Login, login => login.employee)
-    login: Login;
+    login?: Login;
 
     @OneToMany(() => TagStats, tagstats => tagstats.employee)
-    tagStats: TagStats[];
+    tagStats?: TagStats[];
 
     @OneToMany(()=>Recognition, rec=>rec.deletedBy)
     recsDeleted?: Recognition[];
@@ -78,10 +78,10 @@ export class Users {
     commentsDeleted?: Comment[];
 
     @OneToMany(() => Report, report=>report.employeeFrom)
-    report: Report[];
+    report?: Report[];
 
     @OneToMany(() => Rockstar, rockstar=>rockstar.rockstar)
-    rockstar: Rockstar[];
+    rockstar?: Rockstar[];
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;
