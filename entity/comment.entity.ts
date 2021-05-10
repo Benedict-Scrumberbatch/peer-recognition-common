@@ -6,7 +6,6 @@ import { Report } from './report.entity';
 
 
 @Entity({name: "comment"})
-@Index(["employeeFrom","recognition", "createdAt"], {unique: true})
 export class Comment {
     @PrimaryGeneratedColumn('increment')
     commentID: number;
