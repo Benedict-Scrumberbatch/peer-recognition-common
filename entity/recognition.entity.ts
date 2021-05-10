@@ -56,4 +56,7 @@ export class Recognition {
     @ManyToOne(()=>Users, users=>users.recsDeleted)
     @JoinColumn()
     deletedBy?: Users;
+
+    @ManyToOne(()=>Rockstar, rockstar=>rockstar.recognitions, {nullable: true})
+    rockstar?: Rockstar;
 }

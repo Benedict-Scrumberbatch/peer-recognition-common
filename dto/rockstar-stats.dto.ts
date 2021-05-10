@@ -5,5 +5,4 @@ import { Users } from "../entity/users.entity";
 export class ReturnRockstarDto{
     rockstar: Rockstar;
     rockstarStats: RockstarStats[];
-    isItADto: string;
 }

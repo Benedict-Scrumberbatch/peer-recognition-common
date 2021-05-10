@@ -25,6 +25,9 @@ export class Rockstar {
     @OneToMany(() => RockstarStats, RockstarStats => RockstarStats.rockstar)
     stats: RockstarStats[];
 
+    @OneToMany(() => Recognition, Recognition => Recognition.rockstar)
+    recognitions: Recognition[];
+
     @ManyToOne(() => Users)
     rockstar: Users;
 
