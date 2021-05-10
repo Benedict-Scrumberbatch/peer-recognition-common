@@ -12,7 +12,7 @@ import { UserNotification } from './notification.entity'
 @Index(["empFrom", "empTo", "createdAt"])
 export class Recognition {
     @PrimaryGeneratedColumn()
-    recId?: number;
+    recId: number;
 
     @ManyToOne(()=> Company, company=>company.recognitions)
     company?: Company;
@@ -36,7 +36,7 @@ export class Recognition {
     reports?: Report[];
 
     @OneToMany(() => Comment, Comment => Comment.recognition)
-    comments?: Comment[];
+    comments: Comment[];
 
     @OneToMany(() => UserNotification, UserNotification => UserNotification.recognition)
     notifications?: UserNotification[];
