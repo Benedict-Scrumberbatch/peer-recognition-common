@@ -20,6 +20,9 @@ export class Reaction {
     @ManyToOne(() => Rockstar, Rockstar => Rockstar.reactions)
     rockstar: Rockstar ;
 
+    @ManyToOne(() => Comment, Comment => Comment.reactions)
+    comment: Comment ;
+
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;
 

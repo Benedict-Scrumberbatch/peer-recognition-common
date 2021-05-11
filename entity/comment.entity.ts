@@ -4,7 +4,7 @@ import { Recognition } from './recognition.entity';
 import { UserNotification } from './notification.entity';
 import { Report } from './report.entity';
 import { Rockstar } from './rockstar.entity';
-
+import { Reaction } from './reaction.entity';
 
 
 @Entity({name: "comment"})
@@ -20,6 +20,10 @@ export class Comment {
 
     @OneToMany(() => Report, Report => Report.comment)
     reports: Report[];
+
+    
+    @OneToMany(() => Reaction, Reaction => Reaction.comment)
+    reactions: Reaction[];
     
     @ManyToOne(() => Users)
     @JoinColumn()
