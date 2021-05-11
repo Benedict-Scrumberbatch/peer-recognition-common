@@ -3,6 +3,7 @@ import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { UserNotification } from './notification.entity';
 import { Rockstar } from './rockstar.entity';
+import { Comment } from './comment.entity';
 
 
 @Entity({name: "reaction"})
