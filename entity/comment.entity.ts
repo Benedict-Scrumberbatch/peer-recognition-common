@@ -3,6 +3,8 @@ import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { UserNotification } from './notification.entity';
 import { Report } from './report.entity';
+import { Rockstar } from './rockstar.entity';
+
 
 
 @Entity({name: "comment"})
@@ -25,6 +27,9 @@ export class Comment {
 
     @ManyToOne(() => Recognition, Recognition => Recognition.comments)
     recognition: Recognition ;
+
+    @ManyToOne(() => Rockstar, Rockstar => Rockstar.comments)
+    rockstar: Rockstar ;
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;

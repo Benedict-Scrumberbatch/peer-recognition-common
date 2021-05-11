@@ -2,6 +2,8 @@ import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Index, C
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { UserNotification } from './notification.entity';
+import { Rockstar } from './rockstar.entity';
+
 
 @Entity({name: "reaction"})
 @Index(["employeeFrom","recognition"], {unique: true})
@@ -14,6 +16,9 @@ export class Reaction {
 
     @ManyToOne(() => Recognition, Recognition => Recognition.reactions)
     recognition: Recognition ;
+
+    @ManyToOne(() => Rockstar, Rockstar => Rockstar.reactions)
+    rockstar: Rockstar ;
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt?: Date;
