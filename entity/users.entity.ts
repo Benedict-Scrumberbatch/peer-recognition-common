@@ -26,12 +26,11 @@ export class Users {
 
     @BeforeInsert()
     async setId() {
-        if (!this.employeeId) {
+        if (!this.employeeId && this.employeeId !== 0) {
             const users = await getRepository(Users).find({where: {companyId: this.companyId}, take: 5, order: {employeeId:'DESC'}});
             if (users && users.length > 0) {
                 this.employeeId = users[0].employeeId! + 1;
-            }
-            this.employeeId = 0;
+            } 
         }
     }
 

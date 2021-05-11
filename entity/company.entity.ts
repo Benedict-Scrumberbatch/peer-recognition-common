@@ -12,7 +12,11 @@ export class Company {
     async setId() {
         if (!this.companyId) {
             const companies = await getRepository(Company).find({take: 5, order: {companyId:'DESC'}});
-            this.companyId = companies[0].companyId + 1;
+            if (companies.length > 0) {
+                this.companyId = companies[0].companyId + 1;
+            } else {
+                this.companyId = 1;
+            }
         }
     }
     
