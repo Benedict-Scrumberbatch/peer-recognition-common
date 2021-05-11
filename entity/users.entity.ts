@@ -45,7 +45,7 @@ export class Users {
     @Column("timestamp")
     startDate?: Date;
 
-    @Column()
+    @Column({nullable: true, type:'int'})
     managerId?: number;
 
     @OneToMany(()=>Recognition, rec=>rec.empFrom)
