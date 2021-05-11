@@ -45,12 +45,8 @@ export class Users {
     @Column("timestamp")
     startDate?: Date;
 
-    @ManyToOne(()=> Users)
-    @JoinColumn()
-    manager?: Users;
-
-    @OneToMany(()=>Users, emp=>emp.manager)
-    manages?: Users[];
+    @Column()
+    managerId?: number;
 
     @OneToMany(()=>Recognition, rec=>rec.empFrom)
     recsSent?: Recognition[];
