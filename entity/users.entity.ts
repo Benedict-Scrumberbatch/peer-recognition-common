@@ -28,8 +28,8 @@ export class Users {
     async setId() {
         if (!this.employeeId) {
             const users = await getRepository(Users).find({where: {companyId: this.companyId}, take: 5, order: {employeeId:'DESC'}});
-            if (users.length > 0) {
-                this.employeeId = users[0].employeeId + 1;
+            if (users && users.length > 0) {
+                this.employeeId = users[0].employeeId! + 1;
             }
             this.employeeId = 0;
         }
