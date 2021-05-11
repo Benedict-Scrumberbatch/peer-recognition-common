@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, getRepository } from 'typeorm';
 import { Tag } from "./tag.entity";
 import { Recognition } from "./recognition.entity";
 import { Users } from './users.entity';
@@ -8,6 +8,14 @@ export class Company {
     @PrimaryColumn()
     companyId: number;
 
+    @BeforeInsert()
+    async setId() {
+        if (!this.companyId) {
+            const companies = await getRepository(Company).find({take: 5, order: {companyId:'DESC'}});
+            this.companyId = companies[0].companyId + 1;
+        }
+    }
+    
     @Column()
     name: string;
 

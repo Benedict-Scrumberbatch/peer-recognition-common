@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, JoinColumn, OneToMany, ManyToOne, OneToOne, Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, JoinColumn, OneToMany, ManyToOne, OneToOne, Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, getRepository } from 'typeorm';
 import { Company } from "./company.entity";
 import { Login } from './login.entity';
 import { Recognition } from "./recognition.entity";
@@ -23,6 +23,17 @@ export class Users {
 
     @PrimaryColumn()
     employeeId?: number;
+
+    @BeforeInsert()
+    async setId() {
+        if (!this.employeeId) {
+            const users = await getRepository(Users).find({where: {companyId: this.companyId}, take: 5, order: {employeeId:'DESC'}});
+            if (users.length > 0) {
+                this.employeeId = users[0].employeeId + 1;
+            }
+            this.employeeId = 0;
+        }
+    }
 
     @Column()
     firstName: string;
