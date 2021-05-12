@@ -8,7 +8,6 @@ import { Comment } from './comment.entity';
 import { NotificationType } from '../enum/notification-types';
 
 @Entity({name: "notification"})
-@Index(["employeeTo","createdAt"], {unique: true})
 export class UserNotification {
     @PrimaryGeneratedColumn('increment')
     notificationID: number;

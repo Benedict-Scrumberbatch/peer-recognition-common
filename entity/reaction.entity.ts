@@ -7,7 +7,6 @@ import { Comment } from './comment.entity';
 
 
 @Entity({name: "reaction"})
-@Index(["employeeFrom","recognition"], {unique: true})
 export class Reaction {
     @PrimaryGeneratedColumn('increment')
     reactionID: number;
