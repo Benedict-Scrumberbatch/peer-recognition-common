@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn,  Index, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { Users } from './users.entity';
 import { Recognition } from './recognition.entity';
 import { Rockstar } from './rockstar.entity';
